@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Author;
+use App\Models\Puisi;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //  Author::create([
+        //     'name' => 'Tatang Haetami',
+        //     'username' => 'Tatang119',
+        //     'email' => 'tatanghaetami.97@gmail.com',
+        //     'password' => bcrypt('12345')
+        // ]);
+
+        Author::factory(3)->create();
+
+        Puisi::factory(20)->create();
     }
 }

@@ -1,0 +1,21 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.clear {
+    clear: both;
+}
+
+.kontainer {
+    padding: 1rem;
+}
+
+.kontainer p {
+    margin-bottom: 0.3rem;
+}
+
+.porm {
+    margin-top: 15rem;
+}
+
