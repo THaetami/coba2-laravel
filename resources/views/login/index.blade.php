@@ -3,7 +3,7 @@
 @section('container')
 
 <div class="row justify-content-center">
-    <div class="porm col-md-4 mt-5">
+    <div class="porm col-md-4">
 
         {{-- pesan saat registrasi berhasil --}}
         @if (session()->has('success'))
@@ -23,7 +23,7 @@
         @endif
 
 
-        <main class="form-login">
+        <main class="form-login mt-5">
             <h1 class="h5 mb-2 fw-normal text-center">Please Login</h1>
             <form action="/login" method="post">
                 @csrf

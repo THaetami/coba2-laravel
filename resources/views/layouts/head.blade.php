@@ -12,4 +12,15 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 
+    {{-- trix editor di halaman dashboard.posts.create --}}
+    <link rel="stylesheet" type="text/css" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
+
+    {{-- menonaktifkan icon upload gambar pada trix editor --}}
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display : none;
+        }
+    </style>
+
 </head>

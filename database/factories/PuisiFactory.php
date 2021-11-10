@@ -15,6 +15,7 @@ class PuisiFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(mt_rand(2, 4)),
+            'penulis' => $this->faker->name(),
             'body' => collect($this->faker->sentences(mt_rand(7, 18)))->map(fn ($p) => "<p>$p</p>")->implode(''),
             'author_id' => mt_rand(1, 4),
         ];

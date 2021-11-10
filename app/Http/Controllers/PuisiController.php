@@ -11,13 +11,13 @@ class PuisiController extends Controller
 {
     public function index()
     {
+            // $author = Author::pluck('name');
+            // dd($author);
         return view('layouts.index', [
             "title" => "Puisi",
-            "posts" => Puisi::latest()->filter(request(['search', 'author']))->get()
+            "posts" => Puisi::latest()->filter(request(['author', 'search']))->get()
         ]);
     }
-
-
 }
 
 

@@ -1,33 +1,34 @@
 <?php
 
 
-namespace App\Http\Controllers;
+// namespace App\Http\Controllers;
 
-use App\Models\Puisi;
-use App\Models\Author;
+// use App\Models\Puisi;
+// use App\Models\Author;
 
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
-class SearchController
-{
-    public function __invoke(Request $request)
-    {
-        $term = $request->input('term');
+// class SearchController
+// {
+//     public function __invoke(Request $request)
+//     {
+//         $search = $request->input('search');
 
-        $result = Puisi::query()
-            ->when($term, fn ($query) => $query->where('title', 'like', '%' . $term . '%'));
-            // ->withCount('comments')
-            // ->paginate()
+//         $posts = Puisi::query()
+//             ->when($search, fn ($query) => $query->where('title', 'like', '%' . $search . '%')->orWhere('title', 'like', '%' . $search . '%'));
+//             // ->withCount('comments')
+//             // ->paginate()
 
-        $result = Author::query()
-            ->when($term, fn ($query) => $query->where('name', 'like', '%' . $term . '%'));
-            // ->withCount('comments')
-            // ->paginate()
+//         $posts = Author::query()
+//             ->when($search, fn ($query) => $query->where('name', 'like', '%' . $search . '%'));
+//             // ->withCount('comments')
+//             // ->paginate()
 
-            return view('layouts.index', [
-            'result' => $result,
-            'term' => $term
-        ]);
-    }
-}
+//             return view('layouts.index', [
+//             'title' => 'Cari',
+//             'posts' => $posts,
+//             'search' => $search
+//         ]);
+//     }
+// }

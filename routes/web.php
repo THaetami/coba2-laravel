@@ -21,7 +21,8 @@ use Clockwork\Storage\Search;
 
 
 Route::get('/', [PuisiController::class, 'index']);
-// Route::get('/', [SearchController::class]);
+// Route::get('/', [PuisiController::class, 'index']);
+// Route::get('/', SearchController::class);
 
 // link ada di file navbar.blade.php
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -32,4 +33,11 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 // link ada di file navbar.blade.php dan folder dashboard.layouts -> file header.blade.php
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+
+// Route::get('/myprofile', function () {
+//     return view('myprofile.index', [
+//         'title' => 'myprofile'
+//     ]);
+// })->middleware('auth');

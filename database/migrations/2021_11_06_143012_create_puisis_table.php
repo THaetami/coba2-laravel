@@ -16,6 +16,7 @@ class CreatePuisisTable extends Migration
         Schema::create('puisis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id');
+            $table->string('penulis');
             $table->string('title');
             $table->text('body');
             $table->timestamp('publish_at')->nullable();
