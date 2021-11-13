@@ -3,7 +3,7 @@
 @section('container')
 
 <div class="row justify-content-center">
-    <div class="porm col-md-4">
+    <div class="col-md-4 mt-5">
 
         {{-- pesan saat registrasi berhasil --}}
         @if (session()->has('success'))

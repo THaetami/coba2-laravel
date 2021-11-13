@@ -42,4 +42,9 @@ class Author extends Authenticatable
     {
         return $this->belongsTo(Puisi::class); //relationship
     }
+
+    public function comentary()
+    {
+        return $this->hasMany(Comentary::class);
+    }
 }

@@ -13,7 +13,7 @@ class Puisi extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $with = ['author'];
+    protected $with = ['author', 'comentary'];
 
 
 
@@ -23,10 +23,10 @@ class Puisi extends Model
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('body', 'like', '%' . $search . '%');
+                    ->orWhere('body', 'like', '%' . $search . '%')
+                    ->orWhere('penulis', 'like', '%' . $search . '%');
             });
         });
-
 
         // $query->when($filters['search'] ?? false, function ($query, $search) use ($author)  {
         //     return $query->where('title', 'like', '%' . $search . '%')
@@ -47,6 +47,11 @@ class Puisi extends Model
     public function author()
     {
         return $this->belongsTo(Author::class); //relationship
+    }
+
+    public function comentary()
+    {
+        return $this->hasMany(Comentary::class);
     }
 
 }
