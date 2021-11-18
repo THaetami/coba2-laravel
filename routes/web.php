@@ -5,8 +5,8 @@ use App\Models\Puisi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PuisiController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\CropImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,15 @@ use App\Http\Controllers\CropImageController;
 
 Route::get('/', [PuisiController::class, 'index']);
 
+Route::post('/posting', [PuisiController::class, 'store']);
+
+Route::post('/', [PuisiController::class, 'storeComment']);
+
+Route::post('/delete/{puisi:id}', [PuisiController::class, 'destroy']);
+
+
+
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
@@ -37,11 +46,7 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 
-Route::post('/posting', [PuisiController::class, 'store']);
 
-Route::post('/', [PuisiController::class, 'storeComment']);
-
-Route::post('/delete/{puisi:id}', [PuisiController::class, 'destroy']);
 
 
 // Route::get('/myprofile', function () {
@@ -50,9 +55,11 @@ Route::post('/delete/{puisi:id}', [PuisiController::class, 'destroy']);
 //     ]);
 // })->middleware('auth');
 
-Route::get('/myprofile', [CropImageController::class, 'index']);
+Route::get('/myprofile', [ProfileController::class, 'index']);
 
-Route::post('/myprofile', [CropImageController::class, 'uploadCropImage']);
+Route::post('/myprofile/crop', [ProfileController::class, 'crop'])->name('crop');
+
+Route::post('/myprofile/update', [ProfileController::class, 'update'])->name('update');
 
 
 

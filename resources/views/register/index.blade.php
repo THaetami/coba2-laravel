@@ -50,7 +50,7 @@
 
             <button class="w-100 btn btn-lg btn-primary mt-3 fs-6" type="submit">Register</button>
         </form>
-        <small class="d-block text-center mt-3">Dah punya akun mah langsung login weh<a href="/login"> | Login Hyung!!</a></small>
+        <small class="d-block text-center mt-3">Dah punya akun mah langsung login weh | <a href="/login">Login Hyung!!</a></small>
     </main>
     </div>
 </div>

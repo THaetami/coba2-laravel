@@ -27,6 +27,7 @@ class RegisterController extends Controller
 
         // $validatedData['password'] =bcrypt($validatedData['password']);
         $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['image'] = 'noImage.jpg';
 
         Author::create($validatedData);
 

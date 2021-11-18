@@ -2,7 +2,7 @@
 @section('container')
 
     <div class="row justify-content-center">
-        <div class="col-lg-8 mt-4 mb-1">
+        <div class="col-lg-6 mt-4 mb-1">
         @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -78,15 +78,14 @@
             <div class="col-lg-6 mt-2 mb-2">
                 <div class="card text-dark bg-light mb-3">
 
-                    @if ($post->author->image)
                     <div class="card-header m-0">
-                        <img src="{{ asset('storage/' . $post->author->image) }}" width="30" class="img-thumbnile rounded-circle"><a href="/?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                        @if($post->author->image)
+                            <img src="{{ asset('storage/upload/' . $post->author->image) }}" width="30" class="img-thumbnile rounded-circle"><a href="/?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                        @else
+                            <img src="{{ asset('storage/default/noImage.jpg') }}" width="30" class="img-thumbnile rounded-circle"><a href="/?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+
+                        @endif
                     </div>
-                    @else
-                    <div class="card-header m-0">
-                        <img src="gambar/fotoDefault.jpeg" width="30" class="img-thumbnile rounded-circle"><a href="/?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
-                    </div>
-                    @endif
 
                     <div class="kontainer lh-sm">
                         @auth
@@ -141,14 +140,14 @@
 
                             @foreach ( $post->comentary as $coment)
 
-                            <div class="card card-body mb-1 mt-0 p-2">
-                                <p><img src="gambar/tatang.jpg" width="30" class="img-thumbnile rounded-circle"><a href="#" class="text-decoration-none text-primary">{{ $coment->komentator }}</a> <small class="text-muted">{{ $coment->created_at->diffForHumans() }}</small></p>
+                            <div class="card card-body mb-0 mt-2 p-2 border-bottom">
+                                <p><img src="{{ asset('storage/upload/' . $coment->author->image) }}" width="30" class="img-thumbnile rounded-circle"> <a href="/?author={{ $coment->author->username }}" class="text-decoration-none text-primary">{{ $coment->komentator }}</a> <small class="text-muted">{{ $coment->created_at->diffForHumans() }}</small></p>
                                 {{ $coment->comentar }}
                             </div>
 
                             @endforeach
                             <p>
-                                <a class="badge btn-primary text-decoration-none mt-0 mb-0" data-bs-toggle="collapse" type="submit" href="#postingan{{ $post->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <a class="badge btn-primary text-decoration-none mt-3 mb-0" data-bs-toggle="collapse" type="submit" href="#postingan{{ $post->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Tutup Komentar
                                 </a>
                             </p>
