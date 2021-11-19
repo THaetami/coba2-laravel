@@ -5,22 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comentary extends Model
+class ComentaryDrakor extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    // protected $with = ['author', 'puisis'];
-
 
     public function author()
     {
         return $this->belongsTo(Author::class); //relationship
     }
 
-    public function puisis()
+    public function drakor()
     {
-        return $this->belongsTo(Puisi::class);
+        return $this->belongsTo(Drakor::class);
     }
-
-
 }

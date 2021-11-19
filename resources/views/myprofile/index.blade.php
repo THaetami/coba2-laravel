@@ -33,7 +33,6 @@
             @else
                 <img src="{{ asset('storage/default/noImage.jpg') }}" width="150" class="img-thumbnile rounded-circle">
             @endif
-            {{-- <input type="file" id="upload" class="form-control" accept=".jpg, .jpeg, .png" onchange="process()"/> --}}
             <input type="file" name="image" id="image" class="form-control mt-3 mb-3">
 
 
@@ -60,19 +59,9 @@
                     @enderror
                 </div>
 
-                {{-- <div class="mb-3">
-                    <label for="passwordLama" class="form-label">Password Lama</label>
-                    <input type="password" class="form-control @error('passwordLama') is-invalid @enderror" id="passwordLama" name="passwordLama" value="{{ old('passwordLama') }}">
-                    @error('passwordLama')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div> --}}
-
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password Baru</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}">
+                    <label for="password" class="form-label">Ganti Password</label>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" placeholder="tulis password baru disini...">
                     @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}

@@ -13,7 +13,7 @@
             <a class="nav-link text-decoration-none" data-bs-toggle="collapse" href="#navbarToggleExternalContent">AUTHOR</a>
         </li>
         <li class="nav">
-            <a class="nav-link {{ Request::is('/drakor') ? 'text-dark' : '' }}" href="/drakor">DRAQOR</a>
+            <a class="nav-link {{ Request::is('drakor') ? 'text-dark' : '' }}" href="/drakor">DRAQOR</a>
         </li>
             @auth
             <li class="nav-item dropdown">

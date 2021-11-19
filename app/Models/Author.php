@@ -47,4 +47,14 @@ class Author extends Authenticatable
     {
         return $this->hasMany(Comentary::class);
     }
+
+    public function drakor()
+    {
+        return $this->belongsTo(Drakor::class); //relationship
+    }
+
+    public function comentary_drakor()
+    {
+        return $this->hasMany(Comentary::class);
+    }
 }

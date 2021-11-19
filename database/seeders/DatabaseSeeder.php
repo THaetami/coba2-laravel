@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Author;
 use App\Models\Puisi;
+use App\Models\Author;
+use App\Models\Drakor;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,5 +26,7 @@ class DatabaseSeeder extends Seeder
         Author::factory(3)->create();
 
         Puisi::factory(20)->create();
+
+        Drakor::factory(20)->create();
     }
 }

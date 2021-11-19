@@ -8,7 +8,6 @@
                 {{ session('success') }}
             </div>
         @endif
-        </div>
     </div>
 
     <div class="row justify-content-center">
@@ -18,7 +17,7 @@
                     <input type="hidden" name="author" value="{{ request('author') }}">
                 @endif
                 <div class="input-group mb-2 mt-0">
-                    <input type="text" class="form-control" placeholder="Cari Penulis, Judul atau bait puisi.." name="search" value="{{ request('search') }}" id="search">
+                    <input type="text" class="form-control" placeholder="Cari Postingan" name="search" value="{{ request('search') }}" id="search">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>
@@ -31,7 +30,7 @@
     @auth
         <div class="col-lg-6 mt- mb-2">
                 <div class="vstack gap-2 mt-2 mb-2">
-                    <button type="button" class="btn btn-primary" id="tambah" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">+ Tambah Puisi</button>
+                    <button type="button" class="btn btn-primary" id="tambah" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">+ Tambah Bacotan</button>
                 </div>
             <div class="modal fade m-0" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -40,19 +39,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form  method="post" action="/posting" class="mb-3" enctype="multipart/form-data">
+                            <form  method="post" action="/drakor/posting" class="mb-3" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card card-body p-1">
-                                    <input type="text" class="text-center border-0 @error('title') is-invalid @enderror" name="title" id="title" placeholder="Tulis judul puisi disini.." value="{{ old('title') }}" required>
-                                    @error('title')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="card card-body p-1">
                                     <input id="body" type="hidden" name="body" value="{{ old('body') }}">
-                                    <trix-editor input="body" placeholder="Tulis puisimu disini.." required></trix-editor>
+                                    <trix-editor input="body" placeholder="Sok Mangga rek ngemeng naon??" required></trix-editor>
                                     @error('body')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -74,6 +65,7 @@
     </div>
 
 
+
     @if($posts->count())
 
         @foreach ($posts as $post)
@@ -85,9 +77,9 @@
 
                     <div class="card-header m-0">
                         @if($post->author->image)
-                            <img src="{{ asset('storage/upload/' . $post->author->image) }}" width="30" class="img-thumbnile rounded-circle"><a href="/?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                            <img src="{{ asset('storage/upload/' . $post->author->image) }}" width="30" class="img-thumbnile rounded-circle"><a href="/drakor?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
                         @else
-                            <img src="{{ asset('storage/default/noImage.jpg') }}" width="30" class="img-thumbnile rounded-circle"><a href="/?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                            <img src="{{ asset('storage/default/noImage.jpg') }}" width="30" class="img-thumbnile rounded-circle"><a href="/drakor?author={{ $post->author->username }}" class="text-decoration-none text-black"> {{ $post->author->name }} | </a><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
 
                         @endif
                     </div>
@@ -101,7 +93,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="nav-item bg-danger">
-                                        <form action="/delete/{{ $post->id }}" method="post">
+                                        <form action="/drakor/delete/{{ $post->id }}" method="post">
                                             @csrf
                                             <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure?')"><i class="bi bi-file-x"></i> <b>Delete Puisi</b></button>
                                         </form>
@@ -114,16 +106,16 @@
                         @guest
                         <marquee direction="left" scrollamount="2" align="center">Silahkan login untuk berkomentar!!</marquee>
                         @endguest
-                        <h5 class="card-title text-center mb-4">{{ $post->title }}</h5>
+
                         {!! $post->body !!}
 
                     </div>
 
                     @auth
-                    <form method="post" action="/" class="mb-1" enctype="multipart/form-data">
+                    <form method="post" action="/drakor" class="mb-1" enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating card card-body p-1">
-                            <input type="hidden" name="puisi_id" value="{{ $post->id }}">
+                            <input type="hidden" name="drakor_id" value="{{ $post->id }}">
                             <textarea class="form-control" placeholder="Leave a comment here" id="body_komentar" name="comentar"></textarea>
                             @error('comentar')
                                 <p class="text-danger">{{ $message }}</p>
@@ -134,23 +126,23 @@
                     </form>
                      @endauth
 
-                    @if ($post->comentary->count())
+                    @if ($post->comentary_drakor->count())
                     <div class="card-footer mb-0 pt-3 pb-0 text-end">
                         <p>
                             <a class="badge btn-primary text-decoration-none mt-0 mb-0" type="submit" data-bs-toggle="collapse" href="#postingan{{ $post->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                {{ $post->comentary->count('puisi_id') }} Komentar
+                                {{ $post->comentary_drakor->count('drakor_id') }} Komentar
                             </a>
                         </p>
                         <div class="collapse text-start" id="postingan{{ $post->id }}">
 
-                            @foreach ( $post->comentary as $coment)
+                            @foreach ( $post->comentary_drakor as $coment)
 
                             <div class="card card-body mb-0 mt-2 p-2 border-bottom">
                                 <p>
                                     @if($coment->author->image)
-                                        <img src="{{ asset('storage/upload/' . $coment->author->image) }}" width="30" class="img-thumbnile rounded-circle"> <a href="/?author={{ $coment->author->username }}" class="text-decoration-none text-primary">{{ $coment->komentator }}</a> <small class="text-muted">{{ $coment->created_at->diffForHumans() }}</small>
+                                        <img src="{{ asset('storage/upload/' . $coment->author->image) }}" width="30" class="img-thumbnile rounded-circle"> <a href="/drakor?author={{ $coment->author->username }}" class="text-decoration-none text-primary">{{ $coment->komentator }}</a> <small class="text-muted">{{ $coment->created_at->diffForHumans() }}</small>
                                     @else
-                                        <img src="{{ asset('storage/default/noImage.jpg') }}" width="30" class="img-thumbnile rounded-circle"> <a href="/?author={{ $coment->author->username }}" class="text-decoration-none text-primary">{{ $coment->komentator }}</a> <small class="text-muted">{{ $coment->created_at->diffForHumans() }}</small>
+                                        <img src="{{ asset('storage/default/noImage.jpg') }}" width="30" class="img-thumbnile rounded-circle"> <a href="/drakor?author={{ $coment->author->username }}" class="text-decoration-none text-primary">{{ $coment->komentator }}</a> <small class="text-muted">{{ $coment->created_at->diffForHumans() }}</small>
                                     @endif
                                 </p>
                                 {{ $coment->comentar }}

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Drakor;
 use Illuminate\Http\Request;
-use App\Models\Comentary;
-use App\Models\Puisi;
+use App\Models\ComentaryDrakor;
 
+class DrakorController extends Controller
 
-class PuisiController extends Controller
 {
     public function index()
     {
@@ -18,20 +18,17 @@ class PuisiController extends Controller
             $judul = ' dari ' . $author->name;
         }
 
-        return view('layouts.index', [
-            "title" => "Puisi",
-            "judul" => 'Kumpulan Puisi' . $judul,
-            "posts" => Puisi::latest()->filter(request(['author', 'search']))->get(),
+        return view('layouts.drakor.index', [
+            "title" => "Drakor",
+            "judul" => 'Rekomendasi Drakor' . $judul,
+            "posts" => Drakor::latest()->filter(request(['author', 'search']))->get(),
         ]);
-
     }
-
 
     public function store(Request $request)
     {
 
         $validatedData = $request->validate([
-            'title' => 'required|max:30',
             'body' => 'required'
         ]);
 
@@ -39,12 +36,10 @@ class PuisiController extends Controller
         $validatedData['author_id'] = auth()->user()->id;
         $validatedData['penulis'] = auth()->user()->name;
 
-        Puisi::create($validatedData);
+        Drakor::create($validatedData);
 
-        return redirect('/')->with('success', 'New Post Added!');
-
+        return redirect('/drakor')->with('success', 'New Post Added!');
     }
-
 
     public function storeComment(Request $request)
     {
@@ -55,33 +50,21 @@ class PuisiController extends Controller
 
         $validatedData['author_id'] = auth()->user()->id;
         $validatedData['komentator'] = auth()->user()->name;
-        $validatedData['puisi_id'] = $request->puisi_id;
+        $validatedData['drakor_id'] = $request->drakor_id;
 
-        Comentary::create($validatedData);
+        ComentaryDrakor::create($validatedData);
 
-        return redirect('#')->with('success', 'New Comentary Added!');
-
+        return redirect('/drakor')->with('success', 'New Comentary Added!');
     }
 
-
-    public function destroy(Puisi $puisi)
+    public function destroy(Drakor $drakor)
     {
-        Comentary::where('puisi_id', $puisi->id)->delete();
 
-        Puisi::where('id', $puisi->id)->delete();
+        ComentaryDrakor::where('drakor_id', $drakor->id)->delete();
 
-        return redirect('/')->with('success', 'Post has been deleted!');
+        Drakor::where('id', $drakor->id)->delete();
 
+        return redirect('/drakor')->with('success', 'Post has been deleted!');
     }
-
-
 
 }
-
-
-
-
-
-
-
-
