@@ -1,3 +1,8 @@
+<style>
+        #trix-toolbar-1 {
+            display : none;
+        }
+</style>
 @extends('layouts.main')
 @section('container')
 
@@ -87,7 +92,7 @@
                     <div class="kontainer lh-sm">
                         @auth
                         @if($post->author_id == auth()->user()->id)
-                        <div class="nav-item dropdown">
+                        <div class="nav-item dropdown mb-3 justify-content-center">
                             <a href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="dropdown-toggle text-decoration-none">
                                 <i class="bi bi-gear"></i>
                             </a>
@@ -95,7 +100,7 @@
                                     <li class="nav-item bg-danger">
                                         <form action="/drakor/delete/{{ $post->id }}" method="post">
                                             @csrf
-                                            <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure?')"><i class="bi bi-file-x"></i> <b>Delete Puisi</b></button>
+                                            <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure?')"><i class="bi bi-file-x"></i> <b>Delete</b></button>
                                         </form>
                                     </li>
                             </ul>
@@ -103,9 +108,6 @@
                         @endif
                         @endauth
 
-                        @guest
-                        <marquee direction="left" scrollamount="2" align="center">Silahkan login untuk berkomentar!!</marquee>
-                        @endguest
 
                         {!! $post->body !!}
 
@@ -116,11 +118,10 @@
                         @csrf
                         <div class="form-floating card card-body p-1">
                             <input type="hidden" name="drakor_id" value="{{ $post->id }}">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="body_komentar" name="comentar"></textarea>
+                            <textarea id="body_komentar" name="comentar" placeholder="Komentari disini" class="p-1"></textarea>
                             @error('comentar')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
-                            <label for="floatingTextarea">Komentar disini..</label>
                         </div>
                         <button type="submit" id="submit" class="badge bg-primary border-0 m-1">Komentari</button>
                     </form>

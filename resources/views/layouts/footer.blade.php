@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg mt-0 mb-1 bg-white">
                 <div class="vstack gap-2">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">+ Tambah Puisi</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">{{ Request::is('drakor') ? '+ Tambah Bacotan' : '+ Tambah Puisi' }}</button>
                 </div>
             </div>
         </div>

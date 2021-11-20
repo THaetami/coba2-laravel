@@ -75,7 +75,6 @@ class PuisiController extends Controller
     }
 
 
-
 }
 
 
