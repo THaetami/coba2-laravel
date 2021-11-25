@@ -17,7 +17,7 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-6 mt-4 mb-2">
-            <form action="/" method="get">
+            <form action="/drakor" method="get">
                 @if (request('author'))
                     <input type="hidden" name="author" value="{{ request('author') }}">
                 @endif
@@ -98,7 +98,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="nav-item bg-danger">
-                                        <form action="/drakor/delete/{{ $post->id }}" method="post">
+                                        <form action="/drakor/delete/{{ $post->romlah }}" method="post">
                                             @csrf
                                             <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure?')"><i class="bi bi-file-x"></i> <b>Delete</b></button>
                                         </form>

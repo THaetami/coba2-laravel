@@ -57,4 +57,5 @@ class Author extends Authenticatable
     {
         return $this->hasMany(Comentary::class);
     }
+
 }

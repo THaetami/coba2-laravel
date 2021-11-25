@@ -6,10 +6,12 @@ use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Comentary;
 use App\Models\Puisi;
+use Illuminate\Support\Str;
 
 
 class PuisiController extends Controller
 {
+
     public function index()
     {
         $judul = '';
@@ -38,6 +40,7 @@ class PuisiController extends Controller
 
         $validatedData['author_id'] = auth()->user()->id;
         $validatedData['penulis'] = auth()->user()->name;
+        $validatedData['romlah'] = Str::uuid();
 
         Puisi::create($validatedData);
 
@@ -57,6 +60,7 @@ class PuisiController extends Controller
         $validatedData['komentator'] = auth()->user()->name;
         $validatedData['puisi_id'] = $request->puisi_id;
 
+
         Comentary::create($validatedData);
 
         return redirect('#')->with('success', 'New Comentary Added!');
@@ -68,7 +72,7 @@ class PuisiController extends Controller
     {
         Comentary::where('puisi_id', $puisi->id)->delete();
 
-        Puisi::where('id', $puisi->id)->delete();
+        Puisi::where('romlah', $puisi->romlah)->delete();
 
         return redirect('/')->with('success', 'Post has been deleted!');
 

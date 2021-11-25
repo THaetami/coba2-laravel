@@ -16,6 +16,7 @@ class CreateDrakorsTable extends Migration
         Schema::create('drakors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id');
+            $table->string('romlah');
             $table->string('penulis');
             $table->text('body');
             $table->timestamp('publish_at')->nullable();

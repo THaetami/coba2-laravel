@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Drakor;
 use Illuminate\Http\Request;
 use App\Models\ComentaryDrakor;
+use Illuminate\Support\Str;
 
 class DrakorController extends Controller
 
@@ -35,6 +36,7 @@ class DrakorController extends Controller
 
         $validatedData['author_id'] = auth()->user()->id;
         $validatedData['penulis'] = auth()->user()->name;
+        $validatedData['romlah'] = Str::uuid();
 
         Drakor::create($validatedData);
 
@@ -62,7 +64,7 @@ class DrakorController extends Controller
 
         ComentaryDrakor::where('drakor_id', $drakor->id)->delete();
 
-        Drakor::where('id', $drakor->id)->delete();
+        Drakor::where('romlah', $drakor->romlah)->delete();
 
         return redirect('/drakor')->with('success', 'Post has been deleted!');
     }

@@ -60,7 +60,7 @@ class ProfileController extends Controller
     {
 
         $email = Author::where('id', auth()->user()->id)->pluck('email')->first();
-        
+
         $rules = [
             'name' => 'required|max:225|regex:/^[a-zA-Z ]*$/'
         ];

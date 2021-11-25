@@ -101,7 +101,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="nav-item bg-danger">
-                                        <form action="/delete/{{ $post->id }}" method="post">
+                                        <form action="/delete/{{ $post->romlah }}" method="post">
                                             @csrf
                                             <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure?')"><i class="bi bi-file-x"></i> <b>Delete Puisi</b></button>
                                         </form>

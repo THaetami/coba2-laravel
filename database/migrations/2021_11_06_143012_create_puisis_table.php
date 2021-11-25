@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
+
 class CreatePuisisTable extends Migration
 {
     /**
@@ -16,6 +18,7 @@ class CreatePuisisTable extends Migration
         Schema::create('puisis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id');
+            $table->string('romlah');
             $table->string('penulis');
             $table->string('title');
             $table->text('body');
