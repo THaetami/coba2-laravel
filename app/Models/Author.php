@@ -48,14 +48,11 @@ class Author extends Authenticatable
         return $this->hasMany(Comentary::class);
     }
 
-    public function drakor()
+    public function komentar()
     {
-        return $this->belongsTo(Drakor::class); //relationship
+        return $this->hasMany(Komentar::class);
     }
 
-    public function comentary_drakor()
-    {
-        return $this->hasMany(Comentary::class);
-    }
+
 
 }

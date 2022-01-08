@@ -54,6 +54,11 @@ class Puisi extends Model
         return $this->hasMany(Comentary::class);
     }
 
+    public function getRouteKeyName() //untuk mengaktifkan binding di route resource
+    {
+        return 'romlah';
+    }
+
 }
 
 

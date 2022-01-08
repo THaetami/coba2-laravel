@@ -137,8 +137,32 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        // 'attribute-name' => [
+        //     'rule-name' => 'custom-message',
+        // ],
+        'name' => [
+            'required' => 'nama harus diisi',
+            'min' => ':attribute minimal 4 karakter',
+            'max' => ':attribute maksimal 30 karakter',
+            'regex' => ':attribute hanya bisa menggunakan karakter alfabet'
+        ],
+        'username' => [
+            'required' => ':attribute harus diisi',
+            'min' => ':attribute minimal 6 karakter',
+            'max' => ':attribute maksimal 10 karakter',
+            'regex' => ':attribute hanya bisa menggunakan karakter alfanumerik',
+            'unique' => ':attribute sudah digunakan'
+        ],
+        'email' => [
+            'required' => ':attribute harus diisi',
+            'email' => 'format :attribute salah',
+            'unique' => ':attribute sudah digunakan'
+        ],
+        'password' => [
+            'required' => ':attribute harus diisi',
+            'min' => ':attribute minimal 5 karakter',
+            'max' => ':attribute maksimal 12 karakter',
+            'regex' => ':attribute hanya bisa menggunakan karakter alfanumerik'
         ],
     ],
 

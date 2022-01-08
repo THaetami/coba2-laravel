@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PuisiController;
-use App\Http\Controllers\DrakorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 
@@ -24,11 +23,8 @@ use App\Http\Controllers\RegisterController;
 
 
 Route::get('/', [PuisiController::class, 'index']);
-
 Route::post('/posting', [PuisiController::class, 'store'])->middleware('auth');
-
 Route::post('/delete/{puisi:romlah}', [PuisiController::class, 'destroy'])->middleware('auth');
-
 Route::post('/', [PuisiController::class, 'storeComment'])->middleware('auth');
 
 
@@ -36,24 +32,9 @@ Route::post('/', [PuisiController::class, 'storeComment'])->middleware('auth');
 
 
 
-Route::get('/drakor', [DrakorController::class, 'index']);
-
-Route::post('/drakor/posting', [DrakorController::class, 'store']);
-
-Route::post('/drakor/delete/{drakor:romlah}', [DrakorController::class, 'destroy']);
-
-Route::post('/drakor', [DrakorController::class, 'storeComment']);
-
-
-
-
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-
-
 Route::post('/login', [LoginController::class, 'authenticate']);
-
-
 Route::post('/logout', [LoginController::class, 'logout']);
 
 
@@ -71,9 +52,7 @@ Route::post('/myprofile/crop', [ProfileController::class, 'crop'])->name('crop')
 
 Route::post('/myprofile/update', [ProfileController::class, 'update'])->name('update');
 
-// Route::resource('/myprofile', MyProfileController::class)->middleware('auth')->except(['show', 'store', 'create', 'destroy']);
 
-// Route::post('/myprofile/crop', [MyProfileController::class, 'crop'])->name('crop');
 
 
 

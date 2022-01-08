@@ -14,7 +14,7 @@ class LoginController extends Controller
     public function index()
     {
         return view('login.index', [
-            'title' => 'login'
+            'title' => 'Login'
         ]);
     }
 
@@ -32,7 +32,7 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->with('loginError', 'Login failed');
+        return back()->with('loginError', 'Login gagal');
     }
 
     public function logout(Request $request)

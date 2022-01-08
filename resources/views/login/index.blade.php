@@ -2,8 +2,16 @@
 
 @section('container')
 
-<div class="row justify-content-center">
-    <div class="col-md-4 mt-5">
+
+<div class="row justify-content-first mb-0 mt-3">
+    <div class="col-lg-8 m-0">
+        <img src="{{ asset('storage/default/pengepulaksara.png') }}" class="img-fluid" alt="Responsive image">
+    </div>
+</div>
+
+<div class="row justify-content-end m-1 mt-3">
+
+    <div class="col-md-4 m-2">
 
         {{-- pesan saat registrasi berhasil --}}
         @if (session()->has('success'))
@@ -23,13 +31,17 @@
         @endif
 
 
-        <main class="form-login mt-5">
-            <h1 class="h5 mb-2 fw-normal text-center">Please Login</h1>
+
+
+        <main class="form-login m-0">
+
+            <h2 class="mb-3 fw-normal text-center">Squy Login</h2>
             <form action="/login" method="post">
+
                 @csrf
                 <div class="form-floating">
                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" name="email" value="{{ old('email') }}" autofocus required>
-                <label for="email">Email address</label>
+                <label for="email">Alamat Email</label>
                     @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -46,12 +58,16 @@
                     @enderror
                 </div>
 
-                <button class="w-100 btn btn-lg btn-primary mt-3 fs-6" type="submit">Login</button>
+                <button class="w-100 btn btn-lg btn-dark mt-3 fs-6 bg-black" type="submit">Login</button>
             </form>
 
-             <small class="d-block text-center mt-3">Not register? <a href="/register">Resigter Now!!</a></small>
+             <small class="d-block text-center  text-danger mt-3">Belum punya akun? <a href="/register">Squy daptar!!</a></small>
+
         </main>
     </div>
 </div>
+
+
+
 
 @endsection

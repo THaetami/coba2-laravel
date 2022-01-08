@@ -23,4 +23,10 @@
         }
     </style>
 
+
+
+
+    {{-- favicon --}}
+    <link rel="icon" href="{{ url('css/favicon.png') }}">
+
 </head>

@@ -11,11 +11,32 @@
     padding: 1rem;
 }
 
-.kontainer p {
-    margin-bottom: 0.3rem;
-}
 
 .porm {
     margin-top: 15rem;
 }
 
+.noscroll {
+    overflow: hidden;
+    resize: none;
+}
+
+.resize {
+    display: none;
+    white-space: pre-wrap;
+    width: 500px;
+    min-height: 50px;
+    font-size: 13px;
+    padding: 7px;
+    word-wrap: break-word;
+}
+
+.tinggi {
+    line-height: 5px;
+}
+
+/* .body_komentar {
+    white-space: pre-wrap;
+    padding: 3px;
+    margin: 2px;
+} */

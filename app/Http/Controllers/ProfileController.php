@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use App\Models\Comentary;
+use App\Models\Puisi;
 use Illuminate\Support\Facades\Hash; //enkripsi password
 
 class ProfileController extends Controller
@@ -11,8 +13,6 @@ class ProfileController extends Controller
 
     public function index()
     {
-        // $author = Author::where('id', auth()->user()->id)->get();
-        // dd($author->pluck('image'));
         return view('myprofile.index', [
             'author' => Author::where('id', auth()->user()->id)->first()
         ]);
@@ -58,12 +58,14 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request);
 
         $email = Author::where('id', auth()->user()->id)->pluck('email')->first();
 
         $rules = [
-            'name' => 'required|max:225|regex:/^[a-zA-Z ]*$/'
+            'name' => 'required|max:30|min:4|regex:/^[a-zA-Z ]*$/'
         ];
+
 
         if ($request->email != $email) {
             $rules['email'] = 'required|unique:authors';
@@ -71,43 +73,24 @@ class ProfileController extends Controller
 
         $validatedData = $request->validate($rules);
 
+
         if ($request->password != '') {
             $rules['password'] = 'required|min:5 max:12|regex:/^[a-zA-Z0-9]*$/';
             $validatedData['password'] = Hash::make($request->password);
         }
 
+
         $validatedData['id'] = auth()->user()->id;
 
         Author::where('id', Author::where('id', auth()->user()->id)->pluck('id'))->update($validatedData);
 
+        Comentary::where('author_id', auth()->user()->id)->update(['komentator' => $request->name]);
+
+        Puisi::where('author_id', auth()->user()->id)->update(['penulis' => $request->name]);
+
+
         return redirect('/myprofile');
 
-
-
-
-        // $pass = Author::where('id', auth()->user()->id)->pluck('password');
-
-        // $credential = $request->validate([
-        //     'passwordLama' => 'required'
-        // ]);
-
-        // if (Auth::attempt($credential)) {
-
-        // }
-
-        // // dd($pass);
-
-        // $validatedData = $request->validate([ //validasi proses authenticate
-        //     'name' => 'required|max:225|regex:/^[a-zA-Z ]*$/',
-        //     'email' => 'required|email:dns|unique:authors',
-        //     'password' => 'required|min:5 max:12|regex:/^[a-zA-Z0-9]*$/'
-        // ]);
-
-        // // $validatedData['password'] =bcrypt($validatedData['password']);
-        // $validatedData['password'] = Hash::make($validatedData['password']);
-        // $validatedData['id'] = auth()->user()->id;
-
-        // Author::where('id', $request->id)->update($validatedData);
     }
 }
 

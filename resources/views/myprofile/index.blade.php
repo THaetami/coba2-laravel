@@ -23,21 +23,26 @@
     <div class="row justify-content-center">
         <div class="col-md-6 mt-3">
             <div class="pt-0 pb-1 mb-3 mt-0 border-bottom">
-                <a href="/" class="text-decoration-none btn btn-success mb-1"><span data-feather="arrow-left"></span> Back</a>
+                <a href="/" class="text-decoration-none btn btn-dark bg-black mb-1"><span data-feather="arrow-left"></span> Back</a>
                 <h1 class="h2 text-center">Update Profile</h1>
             </div>
 
+            <div class="row justify-content-center">
+                <div class="col-md-4 mt-3">
+                    @if($author->image)
+                        <img src="{{ asset('storage/upload/' . $author->image) }}" width="150" class="img-thumbnile rounded-circle" class="user_picture">
+                    @else
+                        <img src="{{ asset('storage/default/noImage.jpg') }}" width="150" class="img-thumbnile rounded-circle">
+                    @endif
 
-            @if($author->image)
-                <img src="{{ asset('storage/upload/' . $author->image) }}" width="150" class="img-thumbnile rounded-circle" class="user_picture">
-            @else
-                <img src="{{ asset('storage/default/noImage.jpg') }}" width="150" class="img-thumbnile rounded-circle">
-            @endif
-            <input type="file" name="image" id="image" class="form-control mt-3 mb-3">
+                </div>
+            </div>
+            <input type="file" name="image" id="image" class=" form-control mt-3 mb-2">
 
 
 
-            <form  method="post" action="/myprofile/update" class="mb-5" enctype="multipart/form-data">
+
+            <form  method="post" action="/myprofile/update" class="mb-5 mt-4" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -69,7 +74,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary mb-5">Update Profile</button>
+                <button type="submit" class="btn btn-dark mb-5 bg-black">Update Profile</button>
             </form>
         </div>
     </div>
@@ -82,7 +87,7 @@
 <div class="justify-content-center mt-0 fixed-bottom bg-light mt-1">
     <div class="card-footer text-center border-0">
         ©{{ date("Y") }} Copyright:
-        <a class="text-decoration-none text-dark" href="https://tatang/portofolio.com/">tatang.portofolio.com</a>
+        <a class="text-decoration-none text-dark" href="https://pengepulaksara.com/">pengepulaksara.com</a>
     </div>
 </div>
 

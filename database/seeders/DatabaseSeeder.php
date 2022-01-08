@@ -27,6 +27,5 @@ class DatabaseSeeder extends Seeder
 
         Puisi::factory(20)->create();
 
-        Drakor::factory(20)->create();
     }
 }
