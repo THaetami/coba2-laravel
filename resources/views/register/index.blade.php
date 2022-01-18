@@ -3,15 +3,15 @@
 @section('container')
 
 
-<div class="row justify-content-center mb-4 mt-2">
-    <div class="col-md-4 m-2">
+<div class="row justify-content-center mb-2 mt-5 mx-1">
+    <div class="col-md-4 m-2 ">
         <img src="{{ asset('storage/default/pengepulaksara.png') }}" class="img-fluid" alt="Responsive image">
     </div>
 </div>
 
 
-<div class="row justify-content-center">
-    <div class="porm col-md-4 mt-2">
+<div class="row justify-content-center mx-1">
+    <div class="col-md-5 mt-2">
     <main class="form-login">
         <h3 class="mb-2 fw-normal text-center">Squy Daftar</h3>
         <form action="/register" method="post">

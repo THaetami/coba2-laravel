@@ -15,32 +15,35 @@ class PuisiController extends Controller
     public function index()
     {
         $judul = '';
+        $title = '';
         if (request('author')) {
             $author = Author::firstWhere('username', request('author'));
             $judul = ' ' . ucfirst(trans($author->name));
+            $title = ' : ' . ucfirst(trans($author->name));
         }
 
         return view('layouts.index', [
-            "title" => "Sastra",
+            "title" => "Sastra" . $title,
             "judul" => 'Sastra dari' . $judul,
             "posts" => Puisi::latest()->filter(request(['author', 'search']))->get(),
         ]);
-
     }
 
 
     public function store(Request $request)
     {
 
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'body' => 'required|regex:/\s\w+/'
-        ],
-        [
-            'title.required' => 'Judul tidak boleh kosong',
-            'body.required' => 'Tidak boleh kosong',
-            'body.regex' => 'Ditolak'
-        ]);
+        $validatedData = $request->validate(
+            [
+                'title' => 'required',
+                'body' => 'required|regex:/\s\w+/'
+            ],
+            [
+                'title.required' => 'Judul tidak boleh kosong',
+                'body.required' => 'Tidak boleh kosong',
+                'body.regex' => 'Ditolak'
+            ]
+        );
 
 
         $validatedData['author_id'] = auth()->user()->id;
@@ -50,20 +53,21 @@ class PuisiController extends Controller
         Puisi::create($validatedData);
 
         return redirect('/')->with('success', 'Sastra telah ditambahkan');
-
     }
 
 
     public function storeComment(Request $request)
     {
 
-        $validatedData = $request->validate([
-            'comentar' => 'required|regex:/\s\w+(\S)*/'
-        ],
-        [
-            'comentar.required' => 'Komentar tidak boleh kosong',
-            'comentar.regex' => 'Komentar minimal 2 kata dan menggunakan spasi'
-        ]);
+        $validatedData = $request->validate(
+            [
+                'comentar' => 'required|regex:/\s\w+(\S)*/'
+            ],
+            [
+                'comentar.required' => 'Komentar tidak boleh kosong',
+                'comentar.regex' => 'Komentar minimal 2 kata dan menggunakan spasi'
+            ]
+        );
 
 
         $validatedData['author_id'] = auth()->user()->id;
@@ -84,7 +88,6 @@ class PuisiController extends Controller
         Puisi::where('romlah', $puisi->romlah)->delete();
 
         return redirect('/')->with('success', 'Sastra telah dihapus!');
-
     }
 
 
@@ -103,11 +106,3 @@ class PuisiController extends Controller
 
 
 }
-
-
-
-
-
-
-
-

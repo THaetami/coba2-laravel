@@ -71,14 +71,13 @@ class ProfileController extends Controller
             $rules['email'] = 'required|unique:authors';
         }
 
-        $validatedData = $request->validate($rules);
-
-
         if ($request->password != '') {
-            $rules['password'] = 'required|min:5 max:12|regex:/^[a-zA-Z0-9]*$/';
-            $validatedData['password'] = Hash::make($request->password);
+            $rules['password'] = 'required|min:5|max:12|regex:/^[a-zA-Z0-9]*$/';
         }
 
+        $validatedData = $request->validate($rules);
+
+        $validatedData['password'] = Hash::make($request->password);
 
         $validatedData['id'] = auth()->user()->id;
 

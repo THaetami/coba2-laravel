@@ -3,15 +3,15 @@
 @section('container')
 
 
-<div class="row justify-content-first mb-0 mt-3">
-    <div class="col-lg-8 m-0">
+<div class="row justify-content-first mb-0 mt-5">
+    <div class="col-md-8 m-0">
         <img src="{{ asset('storage/default/pengepulaksara.png') }}" class="img-fluid" alt="Responsive image">
     </div>
 </div>
 
-<div class="row justify-content-end m-1 mt-3">
+<div class="row justify-content-end m-0 mt-2">
 
-    <div class="col-md-4 m-2">
+    <div class="col-md-4 m-0">
 
         {{-- pesan saat registrasi berhasil --}}
         @if (session()->has('success'))

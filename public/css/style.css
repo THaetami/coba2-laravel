@@ -8,35 +8,25 @@
 }
 
 .kontainer {
-    padding: 1rem;
+    padding: 0.8rem;
+    padding-bottom: 0.6rem;
 }
 
-
-.porm {
-    margin-top: 15rem;
+#trix-toolbar-1 {
+    display: inline;
 }
 
-.noscroll {
-    overflow: hidden;
-    resize: none;
-}
-
-.resize {
+trix-toolbar {
     display: none;
-    white-space: pre-wrap;
-    width: 500px;
-    min-height: 50px;
-    font-size: 13px;
-    padding: 7px;
-    word-wrap: break-word;
 }
 
-.tinggi {
-    line-height: 5px;
+
+
+/* menonaktifkan icon upload gambar pada trix editor  */
+
+trix-toolbar [data-trix-button-group="file-tools"] {
+    display: none;
 }
 
-/* .body_komentar {
-    white-space: pre-wrap;
-    padding: 3px;
-    margin: 2px;
-} */
+
+

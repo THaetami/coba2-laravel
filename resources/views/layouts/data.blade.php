@@ -1,93 +1,5 @@
-@extends('layouts.main')
-@section('container')
+    {{-- @if($posts->count()) --}}
 
-    <div class="row justify-content-center mb-0 mt-5" id="disini">
-        <div class="col-lg-6 m-0">
-            <img src="{{ asset('storage/default/pembatas.png') }}" class="img-fluid" alt="Responsive image">
-        </div>
-    </div>
-
-    @if (session()->has('success'))
-        <div class="row justify-content-center">
-            <div class="col-lg-6 mt-2 mb-0">
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            </div>
-        </div>
-    @endif
-
-
-    <div class="row justify-content-center">
-    @auth
-        <div class="col-lg-6 mt-3 mb-0">
-                <div class="vstack gap-2 mt-1 mb-1">
-                    <button type="button" class="btn btn-dark bg-black shadow-none" id="tambah" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">+ Tambah Sastra</button>
-                </div>
-            <div class="modal fade m-0" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header m-0">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form  method="post" action="/posting" class="mb-3" enctype="multipart/form-data">
-                                @csrf
-                                <div class="card card-body p-1">
-                                    <input type="text" class="text-center border-0 @error('title') is-invalid @enderror" name="title" id="title" placeholder="Tulis judul puisi disini.." value="{{ old('title') }}" required>
-                                    @error('title')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="card card-body p-1">
-                                    <input id="body" type="hidden" name="body" value="{{ old('body') }}">
-                                    <trix-editor input="body" placeholder="Tulis puisimu disini.." required></trix-editor>
-                                    @error('body')
-                                        <p class="text-danger m-0">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="card card-body p-1"><button type="submit" class="badge bg-black border-0 m-1">Posting</button></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endauth
-    </div>
-
-
-    <div class="row justify-content-center" id="disin">
-            <div class="col-lg-6 mt-2 mb-1">
-            <form action="/" method="get">
-                @if (request('author'))
-                    <input type="hidden" name="author" value="{{ request('author') }}">
-                @endif
-                <div class="input-group mb-2 mt-3">
-                    <button class="btn btn-dark bg-black" type="submit"><i class="bi bi-search"></i></button>
-                    <input type="text" class="form-control shadow-none border-dark" placeholder="{{ (request('author')) ? 'Cari judul atau penggalan sastra..' : 'Cari Penulis, Judul atau Penggalan sastra..' }}" name="search" value="{{ request('search') }}">
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-    <div class="row justify-content-center">
-        <div class="col-lg-6 mt-2 mb-2">
-            @if (request('author'))
-                <h3><a class="text-primary" role="button"><i class="bi bi-arrow-left-circle" onclick="goBack()"></i></a> {{ ucfirst(trans($judul)) }}</h3>
-                <hr>
-            @elseif (request('search'))
-                <h3><a class="text-primary" href="/"><i class="bi bi-arrow-left-circle"></i></a> Hasil pencarian "{{ request('search') }}"</h3>
-                <hr>
-            @endif
-        </div>
-    </div>
-
-
-    @if($posts->count())
         @foreach ($posts as $post)
             <div class="row justify-content-center">
 
@@ -189,15 +101,14 @@
                 </div>
             </div>
         @endforeach
-    @else
+
+    {{-- @else
         <div class="row justify-content-center mb-4 mt-5">
             <div class="col-lg-4 m-2">
                 <img src="{{ asset('storage/default/notfound.png') }}" class="img-fluid" alt="Responsive image">
             </div>
         </div>
-    @endif
+    @endif --}}
 
-
-@endsection
 
 

@@ -8,7 +8,7 @@
 
     <link href="/css/style.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/css/bootstrap.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 
@@ -22,7 +22,7 @@
 <div class="container mb-5">
     <div class="row justify-content-center">
         <div class="col-md-6 mt-3">
-            <div class="pt-0 pb-1 mb-3 mt-0 border-bottom">
+            <div class="pt-0 pb-1 mb-3 mt-0 border-bottom border-dark">
                 <a href="/" class="text-decoration-none btn btn-dark bg-black mb-1"><span data-feather="arrow-left"></span> Back</a>
                 <h1 class="h2 text-center">Update Profile</h1>
             </div>
@@ -37,16 +37,16 @@
 
                 </div>
             </div>
-            <input type="file" name="image" id="image" class=" form-control mt-3 mb-2">
+            <input type="file" name="image" id="image" class="border-dark form-control mt-3 mb-2">
 
 
 
 
-            <form  method="post" action="/myprofile/update" class="mb-5 mt-4" enctype="multipart/form-data">
+            <form  method="post" action="/myprofile" class="mb-5 mt-4" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $author->name) }}" autofocus>
+                    <input type="text" class="border-dark form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $author->name) }}" autofocus>
                     @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -56,7 +56,7 @@
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $author->email) }}">
+                    <input type="text" class="border-dark form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $author->email) }}">
                     @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -66,7 +66,7 @@
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Ganti Password</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" placeholder="tulis password baru disini...">
+                    <input type="password" class="border-dark form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" placeholder="tulis password baru disini...">
                     @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -74,7 +74,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-dark mb-5 bg-black">Update Profile</button>
+                <button type="submit" class="btn btn-dark mb-5 mt-3 bg-black" onclick="return confirm('Lanjutkan update data akun?')">Update Profile</button>
             </form>
         </div>
     </div>
@@ -86,7 +86,7 @@
 
 <div class="justify-content-center mt-0 fixed-bottom bg-light mt-1">
     <div class="card-footer text-center border-0">
-        ©{{ date("Y") }} Copyright:
+        ©{{ date("Y") }} -
         <a class="text-decoration-none text-dark" href="https://pengepulaksara.com/">pengepulaksara.com</a>
     </div>
 </div>

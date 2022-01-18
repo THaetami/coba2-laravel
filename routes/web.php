@@ -50,7 +50,7 @@ Route::get('/myprofile', [ProfileController::class, 'index'])->middleware('auth'
 Route::post('/myprofile/crop', [ProfileController::class, 'crop'])->name('crop');
 
 
-Route::post('/myprofile/update', [ProfileController::class, 'update'])->name('update');
+Route::post('/myprofile', [ProfileController::class, 'update'])->name('update');
 
 
 
